@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build:client"
+  functions = "netlify/functions"
+  publish = "dist/spa"
+
+[build.environment]
+  VITE_API_BASE_URL = "https://nova-s-sih-35061497bf29.herokuapp.com"
+
+
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+  
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"
